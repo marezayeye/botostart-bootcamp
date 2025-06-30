@@ -1,13 +1,33 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
+body {
+  max-width: 1200px;
+}
 
+#header,
+#tab-container {
+  background-color: rgb(138, 110, 248);
+}
 
+#tab-container {
+  display: flex;
+  height: 4rem;
+  column-gap: 2rem;
+  align-items: center;
+}
 
+#tab-container div {
+  height: 100%;
+  padding-top: 1.5rem;
+  font-size: 1.2rem;
 
+}
 
-
+.active-tab {
+  border-bottom: 3px #979797 solid;
+  color: #979797;
+}

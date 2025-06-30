@@ -19,11 +19,13 @@ function App() {
 
     const writeLocalStorage = (value) =>{
       localStorage.setItem('currentTab', value);
+      tabData.forEach(tab => tab.isActive = false);
+      tabData[value].isActive = true;
     }
   return (
     <>
     <Header tabData={tabData}/>
-    <Content tabData={tabData} storageWriter={writeLocalStorage} />
+    <Content tabData={tabData} storageWriter={writeLocalStorage} storageReader={readLocalStorage} />
     </>
   )
 }
