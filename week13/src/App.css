@@ -6,6 +6,11 @@
 
 body {
   max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+#root {
+  min-height: 100dvh;
 }
 
 #header,
@@ -13,21 +18,56 @@ body {
   background-color: rgb(138, 110, 248);
 }
 
+#header {
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
 #tab-container {
   display: flex;
   height: 4rem;
   column-gap: 2rem;
   align-items: center;
+  padding-left: 1rem;
 }
 
 #tab-container div {
   height: 100%;
-  padding-top: 1.5rem;
+  width: 4rem;
+  padding-top: 1rem;
   font-size: 1.2rem;
+  cursor: pointer;
+  text-align: center;
+}
 
+@media (hover: hover) {
+  #tab-container div:hover {
+    border-radius: 1rem;
+    background-color: rgba(196, 190, 221, 0.11);
+    color: #555;
+    transition-duration: 0.3s;
+  }
 }
 
 .active-tab {
-  border-bottom: 3px #979797 solid;
-  color: #979797;
+  border-bottom: 3px #555 solid;
+  color: #555;
+}
+
+#content {
+  background-color: rgb(90, 72, 161);
+  height: 100dvh;
+}
+
+#content-title {
+  height: 3rem;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  font-size: 1.6rem;
+}
+
+#content-text {
+  padding-left: 1rem;
+  height: 100%;
+  font-size: 1.5rem;
+  padding-top: 1rem;
 }

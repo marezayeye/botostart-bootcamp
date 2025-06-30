@@ -4,7 +4,7 @@ import TabContent from './TabContent';
 
 function Content({tabData, storageWriter, storageReader }) {
     const [ selectedTab, setSelectedTab] = useState(0);
-    const { title, description } = tabData[selectedTab]
+    const { header, description } = tabData[selectedTab]
     tabData[storageReader()].isActive = true;
     return (
     <>
@@ -14,9 +14,9 @@ function Content({tabData, storageWriter, storageReader }) {
 
     <div id='content'>
         <div id='content-title'>
-            <h2>{title}</h2>
+            <h2>{header}</h2>
         </div>
-        <div>
+        <div id='content-text'>
             <p>{description}</p>
         </div>
     </div>

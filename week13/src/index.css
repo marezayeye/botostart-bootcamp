@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Yekanbakh;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,10 +13,3 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  /* margin: 0;
-  display: flex;
-  place-items: start;
-  min-width: 320px;
-  min-height: 100vh; */
-}
