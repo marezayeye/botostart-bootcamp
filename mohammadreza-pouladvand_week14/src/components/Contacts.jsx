@@ -49,8 +49,8 @@ function Contacts() {
     setSavedContacts(updatedSavedContacts);
   };
   return (
-    <div>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.form}>
         {inputs.map(
           (
             input,
@@ -68,7 +68,7 @@ function Contacts() {
         )}
         <button onClick={addHandler}>Add Contact</button>
       </div>
-      <div className="alert-container">{alert && <p>{alert}</p>}</div>
+      <div className={styles.alert}>{alert && <p>{alert}</p>}</div>
       <ContactsList
         savedContacts={savedContacts}
         setSavedContacts={setSavedContacts}
