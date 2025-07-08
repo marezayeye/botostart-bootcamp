@@ -2,7 +2,7 @@ import ContactItem from "./ContactItem.jsx";
 
 import styles from "./ContactsList.module.css";
 
-function ContactsList({ savedContacts, setSavedContacts, deleteHandler }) {
+function ContactsList({ savedContacts, deleteHandler, saveEditedContact }) {
   return (
     <div className={styles.container}>
       <h3>ContactsList</h3>
@@ -13,6 +13,7 @@ function ContactsList({ savedContacts, setSavedContacts, deleteHandler }) {
               key={contact.id}
               data={contact}
               deleteHandler={deleteHandler}
+              saveEditedContact={saveEditedContact}
             />
           ))}
         </ul>

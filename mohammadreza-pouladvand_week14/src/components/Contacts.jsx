@@ -48,6 +48,18 @@ function Contacts() {
     );
     setSavedContacts(updatedSavedContacts);
   };
+
+  const saveEditedContact = (targetContact) => {
+    const index = savedContacts.findIndex(
+      (contact) => contact.id === targetContact.id
+    );
+
+    const editedContact = { ...targetContact, id: v4() };
+    setSavedContacts(() => [
+      ...savedContacts,
+      (savedContacts[index] = editedContact),
+    ]);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.form}>
@@ -73,6 +85,8 @@ function Contacts() {
         savedContacts={savedContacts}
         setSavedContacts={setSavedContacts}
         deleteHandler={deleteHandler}
+        changeHandler={changeHandler}
+        saveEditedContact={saveEditedContact}
       />
     </div>
   );
