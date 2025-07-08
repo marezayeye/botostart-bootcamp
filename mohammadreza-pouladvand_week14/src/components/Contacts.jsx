@@ -1,45 +1,80 @@
-import React, { useState } from 'react'
-import styles from './Contacts.module.css'
+import { useState } from "react";
+import { v4 } from "uuid";
 
-import ContactsList from './ContactsList';
+import styles from "./Contacts.module.css";
+
+import ContactsList from "./ContactsList";
+import inputs from "../constants/inputs.js";
 
 function Contacts() {
-  const [newContact, setNewContact] = useState({ // a state to save values from new contact form
-    name: '',
-    lastName: '',
-    email: '',
-    phone: ''
-  })
-  
-  const [savedContacts, setSavedContacts] = useState([]); // a state to store preveiously saved contacts
+  const [newContact, setNewContact] = useState({
+    // a state to save values from new contact form
+    id: "",
+    name: "",
+    lastName: "",
+    email: "",
+    phone: "",
+  });
 
-  const changeHandler = event =>  {
+  const [savedContacts, setSavedContacts] = useState([]); // a state to store preveiously saved contacts
+  const [alert, SetAlert] = useState("");
+
+  const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
-    setNewContact((newContact) =>({...newContact, [name] : value}) )
-  }
+    setNewContact((newContact) => ({ ...newContact, [name]: value }));
+  };
 
   const addHandler = () => {
-    setSavedContacts(savedContacts => ([...savedContacts, newContact] ));
-    setNewContact({    name: '',
-    lastName: '',
-    email: '',
-    phone: ''
-  });
-  }
+    if (
+      !newContact.name ||
+      !newContact.lastName ||
+      !newContact.email ||
+      !newContact.phone
+    ) {
+      SetAlert("Please Enter Valid Data!");
+      return;
+    }
+    const newContactWithId = { ...newContact, id: v4() };
+    setSavedContacts((savedContacts) => [...savedContacts, newContactWithId]);
+    setNewContact({ name: "", lastName: "", email: "", phone: "" });
+    SetAlert("");
+  };
+
+  const deleteHandler = (id) => {
+    const updatedSavedContacts = savedContacts.filter(
+      (contact) => contact.id !== id
+    );
+    setSavedContacts(updatedSavedContacts);
+  };
   return (
     <div>
-      <form>
-        <input type="text" name='name' placeholder='Name'value={newContact.name} onChange={changeHandler}/>
-        <input type="text" name='lastName' placeholder='Last Name'value={newContact.lastName} onChange={changeHandler}/>
-        <input type="email" name='email' placeholder='Email'value={newContact.email} onChange={changeHandler}/>
-        <input type="number" name='phone' placeholder='Phone Number'value={newContact.phone} onChange={changeHandler}/>
-        <button  type='submit' onClick={addHandler}>Add Contact</button>
-      </form>
-
-      <ContactsList savedContacts={savedContacts} setSavedContacts={setSavedContacts} />
+      <div>
+        {inputs.map(
+          (
+            input,
+            index //Creating inputs by mapping on inputs constant
+          ) => (
+            <input
+              key={index}
+              type={input.type}
+              name={input.name}
+              placeholder={input.placeholder}
+              value={newContact[input.name]}
+              onChange={changeHandler}
+            />
+          )
+        )}
+        <button onClick={addHandler}>Add Contact</button>
+      </div>
+      <div className="alert-container">{alert && <p>{alert}</p>}</div>
+      <ContactsList
+        savedContacts={savedContacts}
+        setSavedContacts={setSavedContacts}
+        deleteHandler={deleteHandler}
+      />
     </div>
-  )
+  );
 }
-export default Contacts
+export default Contacts;

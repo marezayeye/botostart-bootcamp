@@ -1,9 +1,24 @@
-import React from 'react'
+import ContactItem from "./ContactItem.jsx";
 
-function ContactsList({savedContacts, setSavedContacts}) {
+function ContactsList({ savedContacts, setSavedContacts,deleteHandler }) {
   return (
-    <div>ContactsList</div>
-  )
+    <div>
+      <h3>ContactsList</h3>
+      {savedContacts.length ? (
+        <ul>
+          {savedContacts.map((contact) => (
+            <ContactItem
+              key={contact.id}
+              data={contact}
+              deleteHandler={deleteHandler}
+            />
+          ))}
+        </ul>
+      ) : (
+        <p>No Contacts Yet!</p>
+      )}
+    </div>
+  );
 }
 
-export default ContactsList
+export default ContactsList;
