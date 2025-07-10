@@ -38,7 +38,7 @@ function ContactItem({
       <button onClick={() => deleteHandler(id)}>🗑️</button>
     </li>
   ) : (
-    <li>
+    <li className={styles.item}>
       <p>
         <input
           type="text"
@@ -71,8 +71,11 @@ function ContactItem({
           onChange={editChangeHandler}
         />
       </p>
-      <button onClick={() => setEditMode(false)}>Cancel</button>
+      <button className={styles.cancelbtn} onClick={() => setEditMode(false)}>
+        Cancel
+      </button>
       <button
+        className={styles.savebtn}
         onClick={() => {
           saveEditedContact(editedContact);
           deleteHandler(id);
