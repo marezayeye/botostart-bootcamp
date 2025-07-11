@@ -1,4 +1,4 @@
-[
+const cityList = [
   "Aberdeen",
   "Abilene",
   "Akron",
@@ -383,5 +383,7 @@
   "Yakima",
   "Yonkers",
   "York",
-  "Youngstown"
-]
+  "Youngstown",
+];
+
+export default cityList;
